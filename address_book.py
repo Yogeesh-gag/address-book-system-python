@@ -12,3 +12,28 @@ class AddressBook:
         contact = Contact(*values)
         self.contacts.append(contact)
         print("Contact added successfully")
+
+    def edit_contact(self):
+        print("\n--------Editing Contact Details--------")
+        first = input("Enter First Name: ")
+        last = input("Enter Last Name: ")
+
+        for contact in self.contacts:
+            if contact.first_name == first and contact.last_name == last:
+                print("Current contact details: ")
+                contact.display_contact()
+
+                print("Enter new contact details(leave blank to continue): ")
+                contact.first_name = input(f"First Name: ") or contact.first_name
+                contact.last_name = input(f"Last Name: ") or contact.last_name
+                contact.address = input(f"Address: ") or contact.address
+                contact.city = input(f"City: ") or contact.city
+                contact.state = input(f"State: ") or contact.state
+                contact.zip_code = input(f"Zip Code: ") or contact.zip_code
+                contact.phone_number = input(f"Phone: ") or contact.phone_number
+                contact.email = input(f"Email: ") or contact.email
+
+                print("Contact details updated successfully")
+                return
+
+        print("Contact details not found.")
