@@ -12,3 +12,6 @@ if __name__ == "__main__":
 
     #uc4-delete contact in the address book
     book.delete_contact()
+
+    #uc5-add multiple contacts in the address book
+    book.add_multiple_contacts()

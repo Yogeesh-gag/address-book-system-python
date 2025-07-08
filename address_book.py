@@ -49,3 +49,10 @@ class AddressBook:
                 print("Contact deleted successfully")
                 return
         print("Contact not found.")
+
+    def add_multiple_contacts(self):
+        while True:
+            self.addContact()
+            cont = input("Do you want to add another contact? (y/n): ")
+            if cont != "y":
+                break
