@@ -37,3 +37,15 @@ class AddressBook:
                 return
 
         print("Contact details not found.")
+
+    def delete_contact(self):
+        print("\n--------Deleting Contact Details--------")
+        first = input("Enter First Name: ")
+        last = input("Enter Last Name: ")
+
+        for contact in self.contacts:
+            if contact.first_name == first and contact.last_name == last:
+                self.contacts.remove(contact)
+                print("Contact deleted successfully")
+                return
+        print("Contact not found.")
