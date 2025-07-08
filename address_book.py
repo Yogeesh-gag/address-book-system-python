@@ -8,6 +8,11 @@ class AddressBook:
         print("\nEnter contact details: ")
         fields = ["First Name", "Last Name", "Address", "City", "State", "Zip Code", "phone", "email"]
         values = [input(f"{field}: ") for field in fields]
+        first_name,last_name = values[0], values[1]
+
+        if any(c.first_name==first_name and c.last_name==last_name for c in self.contacts):
+            print("\nDuplicate contact. A person with this name already exists.")
+            return
 
         contact = Contact(*values)
         self.contacts.append(contact)
