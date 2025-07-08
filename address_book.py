@@ -4,7 +4,7 @@ class AddressBook:
     def __init__(self):
         self.contacts = []
 
-    def addContact(self):
+    def add_contact(self):
         print("\nEnter contact details: ")
         fields = ["First Name", "Last Name", "Address", "City", "State", "Zip Code", "phone", "email"]
         values = [input(f"{field}: ") for field in fields]
@@ -56,3 +56,11 @@ class AddressBook:
             cont = input("Do you want to add another contact? (y/n): ")
             if cont != "y":
                 break
+
+    def view_contacts(self):
+        if not self.contacts:
+            print("No contacts added")
+        else:
+            print("Contacts List: ")
+            for contact in self.contacts:
+                contact.display_contact()
