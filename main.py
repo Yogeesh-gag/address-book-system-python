@@ -19,26 +19,27 @@ if __name__ == "__main__":
     # book.add_multiple_contacts()
 
     #uc6-Multiple address book
-    # manager=AddressBookManager()
-    #
-    # while True:
-    #     print("\n=== Address Book System ===")
-    #     print("1. Create New Address Book")
-    #     print("2. Select Existing Address Book")
-    #     print("3. Exit")
-    #     choice = input("Enter your choice: ")
-    #
-    #     if choice == '1':
-    #         manager.create_address_book()
-    #     elif choice == '2':
-    #         manager.select_address_book()
-    #     elif choice == '3':
-    #         print("Exiting Address Book System.")
-    #         break
-    #     else:
-    #         print("Invalid choice. Try again.")
+    manager=AddressBookManager()
+
+    while True:
+        print("\n=== Address Book System ===")
+        print("1. Create New Address Book")
+        print("2. Select Existing Address Book")
+        print("3. Exit")
+        choice = input("Enter your choice: ")
+
+        if choice == '1':
+            manager.create_address_book()
+        elif choice == '2':
+            manager.select_address_book()
+        elif choice == '3':
+            print("Exiting Address Book System.")
+            break
+        else:
+            print("Invalid choice. Try again.")
 
     #uc7-prevent duplicate entry of contact
-    book.add_contact()
-    book.add_contact()
+    # book.add_contact()
+    # book.add_contact()
+    manager.search_person_by_city_or_state()
 

@@ -1,3 +1,7 @@
+from cgi import print_environ_usage
+
+from win32gui import CloseWindow
+
 from address_book import AddressBook
 
 class AddressBookManager:
@@ -45,4 +49,25 @@ class AddressBookManager:
                 break
             else:
                 print("Invalid choice")
+
+    def search_person_by_city_or_state(self):
+        if not self.books:
+            print("No Address Books available")
+            return
+
+        criteria = input("Search by city or state?: ").strip().lower()
+        if criteria not in ("city", "state"):
+            print("Invalid choice")
+            return
+        value=input(f"Enter the {criteria.title()} name to search for: ").strip()
+
+        for book_name,book in self.books.items():
+            for contact in book.contacts:
+                if (criteria=="city" and contact.city.lower()==value.lower()) or (criteria=="state" and contact.state==value.lower()):
+                    print(f"Found in Address Book {book_name}")
+                    contact.display_contact()
+                else:
+                    print(f"Not found in Address Book {book_name}")
+
+
 
