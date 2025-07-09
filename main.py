@@ -6,7 +6,7 @@ if __name__ == "__main__":
     book = AddressBook()
 
     #uc2-adding contact to address book
-    # book.add_contact()
+    book.add_contact()
     # book.add_contact()
 
     #uc3-editing the contact details in the address book
@@ -51,5 +51,8 @@ if __name__ == "__main__":
 
     #uc10-get contact number of person by city or person
     # manager.count_persons_by_city_or_state()
+
+    #uc11-sort person by name alphabetically
+    book.sort_contacts_by_name()
 
 
