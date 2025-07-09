@@ -4,7 +4,7 @@ class AddressBook:
     def __init__(self):
         self.contacts = []
 
-    def add_contact(self):
+    def add_contact(self,manager=None):
         print("\nEnter contact details: ")
         fields = ["First Name", "Last Name", "Address", "City", "State", "Zip Code", "phone", "email"]
         values = [input(f"{field}: ") for field in fields]
@@ -17,6 +17,12 @@ class AddressBook:
         contact = Contact(*values)
         self.contacts.append(contact)
         print("Contact added successfully")
+
+        if manager:
+            manager.city_person_map[contact.city].append(contact)
+            manager.state_person_map[contact.state].append(contact)
+            print("person add to dictionary")
+
 
     def edit_contact(self):
         print("\n--------Editing Contact Details--------")

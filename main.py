@@ -41,5 +41,7 @@ if __name__ == "__main__":
     #uc7-prevent duplicate entry of contact
     # book.add_contact()
     # book.add_contact()
-    manager.search_person_by_city_or_state()
+    # manager.search_person_by_city_or_state()
+
+    manager.view_persons_by_city_or_state()
 

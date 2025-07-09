@@ -1,4 +1,5 @@
 from cgi import print_environ_usage
+from collections import defaultdict
 
 from win32gui import CloseWindow
 
@@ -8,6 +9,8 @@ class AddressBookManager:
 
     def __init__(self):
         self.books = {}
+        self.city_person_map=defaultdict(list)
+        self.state_person_map=defaultdict(list)
 
     def create_address_book(self):
         name=input("Enter the unique name for the new address book: ")
@@ -42,7 +45,7 @@ class AddressBookManager:
             choice = input("Enter your choice: ")
 
             if choice == "1":
-                book.add_contact()
+                book.add_contact(self)
             elif choice == "2":
                 book.view_contacts()
             elif choice == "3":
@@ -69,5 +72,25 @@ class AddressBookManager:
                 else:
                     print(f"Not found in Address Book {book_name}")
 
+    def view_persons_by_city_or_state(self):
+        choice=input("View by city or state?:").strip().lower()
+
+        if choice=="city":
+            city=input("Enter the city name: ").strip().title()
+            persons=self.city_person_map.get(city,[])
+        elif choice=="state":
+            state=input("Enter the state name: ").strip()
+            persons=self.state_person_map.get(state,[])
+        else:
+            print("Invalid choice")
+            return
+
+        if not persons:
+            print(f"No persons found in {choice.title()}.")
+            return
+
+        print(f"\n Persons in {choice.title()}:")
+        for person in persons:
+            person.display_contact()
 
 
