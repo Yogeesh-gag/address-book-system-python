@@ -6,8 +6,8 @@ if __name__ == "__main__":
     book = AddressBook()
 
     #uc2-adding contact to address book
-    book.add_contact()
-    book.add_contact()
+    # book.add_contact()
+    # book.add_contact()
 
     #uc3-editing the contact details in the address book
     # book.edit_contact()
@@ -37,4 +37,8 @@ if __name__ == "__main__":
     #         break
     #     else:
     #         print("Invalid choice. Try again.")
+
+    #uc7-prevent duplicate entry of contact
+    book.add_contact()
+    book.add_contact()
 
