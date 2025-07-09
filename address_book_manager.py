@@ -11,6 +11,7 @@ class AddressBookManager:
         self.books = {}
         self.city_person_map=defaultdict(list)
         self.state_person_map=defaultdict(list)
+        # print(self.city_person_map.values())
 
     def create_address_book(self):
         name=input("Enter the unique name for the new address book: ")
@@ -76,21 +77,34 @@ class AddressBookManager:
         choice=input("View by city or state?:").strip().lower()
 
         if choice=="city":
-            city=input("Enter the city name: ").strip().title()
-            persons=self.city_person_map.get(city,[])
+            name=input("Enter the city name: ").strip().title()
+            persons=self.city_person_map.get(name,[])
         elif choice=="state":
-            state=input("Enter the state name: ").strip()
-            persons=self.state_person_map.get(state,[])
+            name=input("Enter the state name: ").strip()
+            persons=self.state_person_map.get(name,[])
         else:
             print("Invalid choice")
-            return
+            return None
 
         if not persons:
-            print(f"No persons found in {choice.title()}.")
-            return
+            print(f"No persons found in {choice.title()} {name}.")
+            return None
 
-        print(f"\n Persons in {choice.title()}:")
+        print(f"\n Persons in {choice.title()}:{name}")
         for person in persons:
             person.display_contact()
+
+        return persons,name
+
+    def count_persons_by_city_or_state(self):
+        persons,name=self.view_persons_by_city_or_state()
+        if persons is None:
+            return
+        print(f"Total number of persons in {name}:{len(persons)}")
+
+        print("Contact Numbers")
+        for person in persons:
+            print(f"{person.first_name} {person.last_name} {person.phone_number}")
+
 
 
