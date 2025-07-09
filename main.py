@@ -53,6 +53,8 @@ if __name__ == "__main__":
     # manager.count_persons_by_city_or_state()
 
     #uc11-sort person by name alphabetically
-    book.sort_contacts_by_name()
+    # book.sort_contacts_by_name()
 
+    #uc12-sort the person by city,state or zipcode
+    book.sort_contacts_by_field()
 

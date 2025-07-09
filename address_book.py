@@ -86,3 +86,24 @@ class AddressBook:
         print("Contacts sorted alphabetically by  name ")
         for contact in sorted_contacts:
             contact.display_contact()
+
+    def sort_contacts_by_field(self):
+        if not self.contacts:
+            print("No contacts to sort.")
+            return
+
+        field = input("Sort by City, State, or Zip Code? ").strip().lower()
+
+        if field == "city":
+            sorted_contacts = sorted(self.contacts, key=lambda c: c.city.lower())
+        elif field == "state":
+            sorted_contacts = sorted(self.contacts, key=lambda c: c.state.lower())
+        elif field == "zip":
+            sorted_contacts = sorted(self.contacts, key=lambda c: int(c.zip_code))
+        else:
+            print("Invalid field. Choose from City, State, or Zip.")
+            return
+
+        print(f"\nContacts sorted by {field.title()}:")
+        for contact in sorted_contacts:
+            contact.display_contact()
