@@ -1,7 +1,5 @@
 import csv
-
-from pywin.Demos.app.customprint import PrintDemoView
-
+import json
 from contact import Contact
 
 class AddressBook:
@@ -178,3 +176,51 @@ class AddressBook:
         except Exception as e:
             print(f"Error loading file: {e}")
 
+    def save_to_json(self,filename):
+        try:
+            data=[]
+            for c in self.contacts:
+                data.append({
+                    "first_name": c.first_name,
+                    "last_name": c.last_name,
+                    "address": c.address,
+                    "city": c.city,
+                    "state": c.state,
+                    "zip_code": c.zip_code,
+                    "phone_number": c.phone_number,
+                    "email": c.email
+                })
+
+            with open(filename, "w") as file:
+                json.dump(data, file)
+
+            print(f"Address Book saved successfully to '{filename}' as json")
+        except Exception as e:
+            print("Error saving to JSON: {e}")
+
+    def load_from_json(self,filename):
+        try:
+            with open(filename, "r") as file:
+                data = json.load(file)
+                self.contacts.clear()
+
+                for entry in data:
+                    contact = Contact(
+                        entry["first_name"],
+                        entry["last_name"],
+                        entry["address"],
+                        entry["city"],
+                        entry["state"],
+                        entry["zip_code"],
+                        entry["phone_number"],
+                        entry["email"]
+                    )
+
+                    self.contacts.append(contact)
+            print((f"Address book loaded successfully from '{filename}' as json"))
+            for c in self.contacts:
+                c.display_contact()
+        except FileNotFoundError:
+            print(f"File {filename} not found.")
+        except Exception as e:
+            print(f"Error loading file: {e}")
