@@ -1,3 +1,5 @@
+from fileinput import filename
+
 from address_book_manager import AddressBookManager
 from address_book import AddressBook
 
@@ -59,9 +61,14 @@ if __name__ == "__main__":
     # book.sort_contacts_by_field()
 
     #uc13
-    filename=input("Enter the filename: ")
-    book.save_to_file(filename)
-    book.load_from_file(filename)
-    book.view_contacts()
+    # filename=input("Enter the filename: ")
+    # book.save_to_file(filename)
+    # book.load_from_file(filename)
+    # book.view_contacts()
+
+    #uc14
+    filename=input("Enter the filename to save: ")
+    book.save_to_csv(filename)
+    book.load_from_csv(filename)
 
 

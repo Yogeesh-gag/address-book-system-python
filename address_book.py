@@ -1,3 +1,5 @@
+import csv
+
 from pywin.Demos.app.customprint import PrintDemoView
 
 from contact import Contact
@@ -130,6 +132,47 @@ class AddressBook:
                         contact = Contact(*parts)
                         self.contacts.append(contact)
             print(f"Address book loaded successfully from '{filename}'")
+        except FileNotFoundError:
+            print(f"File {filename} not found.")
+        except Exception as e:
+            print(f"Error loading file: {e}")
+
+    def save_to_csv(self,filename):
+        try:
+            with open(filename, "w") as file:
+                writer=csv.writer(file)
+
+                writer.writerow(["First Name","Last Name","Address","City","State","Zip Code","Phone Number","Email"])
+                for contact in self.contacts:
+                    writer.writerow([
+                        contact.first_name,
+                        contact.last_name,
+                        contact.address,
+                        contact.city,
+                        contact.state,
+                        contact.zip_code,
+                        contact.phone_number,
+                        contact.email
+                    ])
+            print(f"Address book saved successfully to '{filename}' as CSV")
+        except Exception as e:
+            print(f"Error saving to file: {e}")
+
+    def load_from_csv(self,filename):
+        try:
+            with open(filename, "r") as file:
+                reader = csv.reader(file)
+                next(reader)
+                self.contacts.clear()
+
+                for line in reader:
+                    if len(line) == 8:
+                        contact = Contact(*line)
+                        self.contacts.append(contact)
+
+            print(f"Address book loaded successfully from '{filename}' as CSV \n")
+            for contact in self.contacts:
+                contact.display_contact()
         except FileNotFoundError:
             print(f"File {filename} not found.")
         except Exception as e:
