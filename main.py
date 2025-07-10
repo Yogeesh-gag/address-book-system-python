@@ -19,7 +19,7 @@ if __name__ == "__main__":
     # book.add_multiple_contacts()
 
     #uc6-Multiple address book
-    manager=AddressBookManager()
+    # manager=AddressBookManager()
 
 
     # while True:
@@ -56,5 +56,12 @@ if __name__ == "__main__":
     # book.sort_contacts_by_name()
 
     #uc12-sort the person by city,state or zipcode
-    book.sort_contacts_by_field()
+    # book.sort_contacts_by_field()
+
+    #uc13
+    filename=input("Enter the filename: ")
+    book.save_to_file(filename)
+    book.load_from_file(filename)
+    book.view_contacts()
+
 

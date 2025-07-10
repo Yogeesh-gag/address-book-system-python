@@ -1,3 +1,5 @@
+from pywin.Demos.app.customprint import PrintDemoView
+
 from contact import Contact
 
 class AddressBook:
@@ -107,3 +109,29 @@ class AddressBook:
         print(f"\nContacts sorted by {field.title()}:")
         for contact in sorted_contacts:
             contact.display_contact()
+
+    def save_to_file(self,filename):
+        try:
+            with open(filename, "w") as file:
+                for contact in self.contacts:
+                    line=f"{contact.first_name}|{contact.last_name}|{contact.address}|{contact.city}|{contact.state}|{contact.zip_code}|{contact.phone_number}|{contact.email}"
+                    file.write(line+"\n")
+            print(f"Address book saved successfully to '{filename}'")
+        except Exception as e:
+            print(f"Error saving to file: {e}")
+
+    def load_from_file(self,filename):
+        try:
+            with open(filename, "r") as file:
+                self.contacts.clear()
+                for line in file:
+                    parts= line.strip().split("|")
+                    if len(parts) == 8:
+                        contact = Contact(*parts)
+                        self.contacts.append(contact)
+            print(f"Address book loaded successfully from '{filename}'")
+        except FileNotFoundError:
+            print(f"File {filename} not found.")
+        except Exception as e:
+            print(f"Error loading file: {e}")
+
