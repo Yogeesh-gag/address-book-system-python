@@ -1,7 +1,5 @@
-from cgi import print_environ_usage
-from collections import defaultdict
 
-from win32gui import CloseWindow
+from collections import defaultdict
 
 from address_book import AddressBook
 
